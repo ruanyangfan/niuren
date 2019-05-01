@@ -10,6 +10,7 @@ class BossInfo extends React.PureComponent{
         this.saveAvatar = this.saveAvatar.bind(this)
         this.handleChange = this.handleChange.bind(this)
     }
+    
     saveAvatar(text){
         this.setState({
             'avatar': text

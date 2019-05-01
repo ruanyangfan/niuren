@@ -29,7 +29,7 @@ class GeniusInfo extends React.PureComponent{
                     <Avatar getText = {(text) => this.saveAvatar(text)}/><WhiteSpace/>
                     <InputItem
                     onChange={v => this.handleChange('title',v)}>应聘职位</InputItem><WhiteSpace/>
-                    <TextareaItem title='职位要求' autoHeight
+                    <TextareaItem title='个人简介' autoHeight
                     onChange={v => this.handleChange('desc',v)}></TextareaItem><WhiteSpace/>
                     <Button type='primary' onClick={() => saveInfo(this.state)}>保存</Button>
                 </WingBlank>
@@ -38,7 +38,6 @@ class GeniusInfo extends React.PureComponent{
         )
     }
 }
-
 const mapState = (state) => {
     return {
         redirectpath: state.login.redirectPath

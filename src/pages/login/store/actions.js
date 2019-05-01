@@ -38,3 +38,10 @@ export const saveinfo = (data) => {
         })
     }
 }
+
+export const addata = (data) => {
+    return {
+        type: ActionTypes.ADD_DATA,
+        data
+    }
+}

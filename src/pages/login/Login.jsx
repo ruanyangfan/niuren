@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux' 
 import Logo from '../../components/logo/Logo'
 import * as Actions from './store/actions'
+import * as RegisterActions from '../register/store/actions'
 import { List,WhiteSpace,InputItem,Button,WingBlank } from 'antd-mobile'
 import { Redirect } from 'react-router-dom'
 import styles from '../login/Login.module.css'
@@ -14,6 +15,11 @@ class Login extends React.Component{
             pwd: ''
         }
         this.handleChange = this.handleChange.bind(this)
+    }
+    componentDidMount(){
+        if(this.props.registerpath){
+            this.props.useRegister()
+        }
     }
     handleChange(key,value){
         this.setState({
@@ -47,14 +53,18 @@ class Login extends React.Component{
 const mapState = (state) => {
     return {
         msg: state.login.msg,
-        redirectpath: state.login.redirectPath
+        redirectpath: state.login.redirectPath,
+        registerpath: state.register.redirectPath
     }
 }
 
 const mapDispatch = (dispatch) => {
     return {
-        loginClick:  (state) => {
+        loginClick: (state) => {
             dispatch(Actions.login(state))
+        },
+        useRegister(){
+            dispatch(RegisterActions.clearpath())
         }
     }
 }

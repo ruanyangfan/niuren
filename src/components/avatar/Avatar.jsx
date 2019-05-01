@@ -1,5 +1,6 @@
 import React from 'react'
 import { Grid,List } from 'antd-mobile'
+import propTypes from 'prop-types'
 class Avatar extends React.PureComponent{
     constructor(){
         super()
@@ -8,6 +9,7 @@ class Avatar extends React.PureComponent{
     render(){
         const avatarlist = `boy,girl,man,woman,bull,chick,crab,hedgehog,hippopotamus,job,koala,lemur,pig,tiger,whale,zebra`
         .split(',').map(item => ({icon: require(`../../images/${item}.png`),text:item}))
+        
         const gridHeader = this.state.icon?(
         <div>
             <span style={{verticalAlign:'middle'}}>已选择头像</span>
@@ -25,5 +27,7 @@ class Avatar extends React.PureComponent{
         )
     }
 }
-
+Avatar.propTypes = {
+    getText: propTypes.func.isRequired
+}
 export default Avatar

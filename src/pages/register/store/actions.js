@@ -28,3 +28,8 @@ export const requestAuth = ({user,pwd,rpwd,type}) => {
         })
     }
 }
+export const clearpath = () => {
+    return {
+        type: ActionTypes.CLEAR_PATH
+    }
+}

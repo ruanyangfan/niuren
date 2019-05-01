@@ -1,3 +1,4 @@
 export const LOGIN_ERRORMSG = 'LOGIN_ERRORMSG'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const SAVE_SUCCESS = 'SAVE_SUCCESS'
+export const ADD_DATA = 'ADD_DATA'

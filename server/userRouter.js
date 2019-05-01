@@ -3,10 +3,27 @@ const model = require('./model')
 const Router = express.Router()
 const User = model.getModel('user')
 const utilt = require('utility')
+const _filter = { pwd:0,__v:0 }
 
 Router.get('/list',function(req,res){
-    User.find({},function(err,ret){
-        return res.json(ret)
+    const {type} = req.query
+    User.find({type},function(err,ret){
+        if(err){
+            return res.json({code:1,msg:'服务器繁忙'})
+        }
+        return res.json({code:0,data:ret})
+    })
+})
+Router.get('/info',function(req,res){
+    const userid = req.cookies.userid
+    if(!userid){
+        return res.json({code:1})
+    }
+    User.findById(userid,_filter,function(err,ret){
+        if(err){
+            return res.json({code:1,msg:'服务器繁忙'})
+        }
+        return res.json({code:0,data:ret})
     })
 })
 Router.post('/register',function(req,res){
@@ -28,7 +45,7 @@ Router.post('/register',function(req,res){
 })
 Router.post('/login',function(req,res){
     const {user,pwd} = req.body
-    User.findOne({user,pwd:utilt.md5(pwd)},{pwd:0},function(err,ret){
+    User.findOne({user,pwd:utilt.md5(pwd)},_filter,function(err,ret){
         if(err){
             return res.json({code:1,msg:'服务器繁忙'})
         }
